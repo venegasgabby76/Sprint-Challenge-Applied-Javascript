@@ -7,3 +7,33 @@
 //
 //  Each tab should look like this:
 //    <div class="tab">topic here</div>
+
+
+
+  //there are 5 different objects in this. JavaScript , Bootstrap, Technology, JQuery , Node.js
+
+  function tabClass(topic) {
+    //Make Element
+    const tab = document.createElement('div');
+
+    //Add Classes
+    tab.classList.add("tab"); 
+
+    tab.textContent = topic;
+
+    return tab;
+}
+
+const topics = document.querySelector('.topics');
+
+axios.get("https://lambda-times-backend.herokuapp.com/topics")
+    .then((response) => {
+        console.log(response.data.topics);
+        response.data.topics.forEach(function(topic) {
+            topics.append(tabClass(topic));
+        });
+    });
+
+
+
+  
